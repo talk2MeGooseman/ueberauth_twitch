@@ -14,7 +14,7 @@
 
     ```elixir
     def deps do
-      [{:ueberauth_twitch_strategy, "~> 0.2"}]
+      [{:ueberauth_twitch_strategy, git: "git://github.com/talk2MeGooseman/ueberauth_twitch"}]
     end
     ```
 
