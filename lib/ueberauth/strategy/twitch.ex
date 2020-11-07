@@ -193,9 +193,8 @@ defmodule Ueberauth.Strategy.Twitch do
 
   defp fetch_user(conn, token) do
     conn = put_private(conn, :twitch_token, token)
-    api_ver = option(conn, :api_ver) || "v4"
 
-    case Ueberauth.Strategy.Twitch.OAuth.get(token, "/api/#{api_ver}/user") do
+    case Ueberauth.Strategy.Twitch.OAuth.get(token, "https://api.twitch.tv/helix/users") do
       {:ok, %OAuth2.Response{status_code: 401, body: _body}} ->
         set_errors!(conn, [error("token", "unauthorized")])
 
