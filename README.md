@@ -110,9 +110,9 @@ In addition if the `redirect_uri` on the the authorize request **must match**
 the `redirect_uri` on the token request.
 
 
-## Documentation
+<!-- ## Documentation
 
 The docs can be found at [ueberauth_twitch][package-docs] on [Hex Docs][hex-docs].
 
 [hex-docs]: https://hexdocs.pm
-[package-docs]: https://hexdocs.pm/ueberauth_twitch_strategy
+[package-docs]: https://hexdocs.pm/ueberauth_twitch_strategy -->
