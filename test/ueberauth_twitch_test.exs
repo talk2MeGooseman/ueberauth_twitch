@@ -120,7 +120,7 @@ defmodule UeberauthTwitchTest do
           "email" => "johndoe@gmail.com",
           "login" => "johndoe",
           "description" => "My channel.",
-          "profile_image_url" => "http://the.image.url",
+          "profile_image_url" => "http://the.image.url"
         })
 
       info = Ueberauth.Strategy.Twitch.info(conn)

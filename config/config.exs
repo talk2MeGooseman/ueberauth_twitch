@@ -32,9 +32,7 @@ use Mix.Config
 if Mix.env() == :test do
   config :ueberauth, Ueberauth,
     providers: [
-      twitch:
-        {Ueberauth.Strategy.Twitch,
-         [default_scope: ""]}
+      twitch: {Ueberauth.Strategy.Twitch, [default_scope: ""]}
     ]
 
   config :ueberauth, Ueberauth.Strategy.Twitch.OAuth,

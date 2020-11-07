@@ -1,7 +1,7 @@
 defmodule UeberauthTwitch.Mixfile do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.0.1"
 
   def project do
     [
@@ -12,12 +12,18 @@ defmodule UeberauthTwitch.Mixfile do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
       source_url: "https://github.com/FILL_THIS_IN",
       homepage_url: "https://github.com/FILL_THIS_IN",
       description: description(),
       deps: deps(),
-      docs: docs()
+      docs: docs(),
+      aliases: aliases()
     ]
   end
 
@@ -49,7 +55,7 @@ defmodule UeberauthTwitch.Mixfile do
   end
 
   defp description do
-    "An Ueberauth strategy for using twitch to authenticate your users."
+    "An Ueberauth strategy for using Twitch to authenticate your users."
   end
 
   defp package do
@@ -59,6 +65,12 @@ defmodule UeberauthTwitch.Mixfile do
       maintainers: ["Chavez"],
       licenses: ["MIT"],
       links: %{GitHub: "https://github.com/CHANGE_THIS"}
+    ]
+  end
+
+  defp aliases do
+    [
+      lint: ["format", "credo"]
     ]
   end
 end

@@ -73,9 +73,9 @@ defmodule Ueberauth.Strategy.Twitch do
     default_scope: "",
     oauth2_module: Ueberauth.Strategy.Twitch.OAuth
 
-  alias Ueberauth.Auth.Info
   alias Ueberauth.Auth.Credentials
   alias Ueberauth.Auth.Extra
+  alias Ueberauth.Auth.Info
 
   @doc """
   Handles the initial redirect to the twitch authentication page.
@@ -175,7 +175,7 @@ defmodule Ueberauth.Strategy.Twitch do
       nickname: user["login"],
       email: user["email"],
       description: user["description"],
-      image: user["profile_image_url"],
+      image: user["profile_image_url"]
     }
   end
 
