@@ -107,7 +107,7 @@ defmodule UeberauthTwitchTest do
       assert creds.token == "access-token"
       assert creds.refresh_token == "refresh-token"
       assert creds.expires == true
-      assert creds.scopes == [""]
+      assert creds.scopes == []
     end
   end
 
@@ -116,11 +116,15 @@ defmodule UeberauthTwitchTest do
       conn =
         %Plug.Conn{}
         |> Plug.Conn.put_private(:twitch_user, %{
-          "display_name" => "JohnDoe",
-          "email" => "johndoe@gmail.com",
-          "login" => "johndoe",
-          "description" => "My channel.",
-          "profile_image_url" => "http://the.image.url"
+          "data" => [
+            %{
+              "display_name" => "JohnDoe",
+              "email" => "johndoe@gmail.com",
+              "login" => "johndoe",
+              "description" => "My channel.",
+              "profile_image_url" => "http://the.image.url"
+            }
+          ]
         })
 
       info = Ueberauth.Strategy.Twitch.info(conn)

@@ -55,7 +55,7 @@ defmodule Ueberauth.Strategy.Twitch.OAuth do
     |> OAuth2.Client.authorize_url!(params)
   end
 
-  def get(token, url, headers \\ [], opts \\ []) do
+  def get(token, url, headers \\ [{"Client-ID", client().client_id}], opts \\ []) do
     [token: token]
     |> client
     |> put_param("access_token", token)

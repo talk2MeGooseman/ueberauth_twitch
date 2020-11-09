@@ -152,8 +152,7 @@ defmodule Ueberauth.Strategy.Twitch do
   """
   def credentials(conn) do
     token = conn.private.twitch_token
-    scope_string = token.other_params["scope"] || ""
-    scopes = String.split(scope_string, ",")
+    scopes = token.other_params["scope"] || []
 
     %Credentials{
       token: token.access_token,
@@ -168,7 +167,8 @@ defmodule Ueberauth.Strategy.Twitch do
   Fetches the fields to populate the info section of the `Ueberauth.Auth` struct.
   """
   def info(conn) do
-    user = conn.private.twitch_user
+    twitch_user_data = conn.private.twitch_user
+    %{"data" => [user]} = twitch_user_data
 
     %Info{
       name: user["display_name"],
