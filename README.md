@@ -1,8 +1,8 @@
 # Überauth Twitch
 
-[![Hex Version](https://img.shields.io/hexpm/v/ueberauth_twitch_strategy.svg)](https://hex.pm/packages/ueberauth_twitch_strategy)
+<!-- [![Hex Version](https://img.shields.io/hexpm/v/ueberauth_twitch_strategy.svg)](https://hex.pm/packages/ueberauth_twitch_strategy)
 [![Build Status](https://travis-ci.org/mtchavez/ueberauth_twitch.svg?branch=master)](https://travis-ci.org/mtchavez/ueberauth_twitch)
-[![Coverage Status](https://coveralls.io/repos/github/mtchavez/ueberauth_twitch/badge.svg?branch=master)](https://coveralls.io/github/mtchavez/ueberauth_twitch?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mtchavez/ueberauth_twitch/badge.svg?branch=master)](https://coveralls.io/github/mtchavez/ueberauth_twitch?branch=master) -->
 
 > Twitch OAuth2 strategy for Überauth.
 
@@ -36,7 +36,7 @@
             uid_field: :email,
             nickname_field: :username,
           ] },
-        twitch: {Ueberauth.Strategy.Twitch, [default_scope: "read_user"]},
+        twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]},
       ]
     ```
 
@@ -86,7 +86,7 @@ Depending on the configured url you can initial the request through:
 
 Or with options:
 
-    /oauth2/authorize?scope=api read_user
+    /oauth2/authorize?scope=user:read:email
 
 
 ```elixir
@@ -97,7 +97,7 @@ config :ueberauth, Ueberauth,
         uid_field: :email,
         nickname_field: :username,
       ] },
-    twitch: {Ueberauth.Strategy.Twitch, [default_scope: "read_user"]},
+    twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]},
   ]
 ```
 
