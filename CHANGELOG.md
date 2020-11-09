@@ -9,7 +9,7 @@
 
 # v0.2.0 - 2018-03-14
 
-- Set app correctly to `ueberauth_twitch_strategy`
+- Set app correctly to `ueberauth_twitch`
 
 # v0.1.1 - 2018-03-13
 

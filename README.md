@@ -1,6 +1,6 @@
 # Überauth Twitch
 
-<!-- [![Hex Version](https://img.shields.io/hexpm/v/ueberauth_twitch_strategy.svg)](https://hex.pm/packages/ueberauth_twitch_strategy)
+<!-- [![Hex Version](https://img.shields.io/hexpm/v/ueberauth_twitch.svg)](https://hex.pm/packages/ueberauth_twitch)
 [![Build Status](https://travis-ci.org/mtchavez/ueberauth_twitch.svg?branch=master)](https://travis-ci.org/mtchavez/ueberauth_twitch)
 [![Coverage Status](https://coveralls.io/repos/github/mtchavez/ueberauth_twitch/badge.svg?branch=master)](https://coveralls.io/github/mtchavez/ueberauth_twitch?branch=master) -->
 
@@ -10,11 +10,11 @@
 
 1. Setup your application in Twitch under your profile [applications menu][twitch-apps]
 
-1. Add `:ueberauth_twitch_strategy` to your list of dependencies in `mix.exs`:
+1. Add `:ueberauth_twitch` to your list of dependencies in `mix.exs`:
 
     ```elixir
     def deps do
-      [{:ueberauth_twitch_strategy, git: "git://github.com/talk2MeGooseman/ueberauth_twitch"}]
+      [{:ueberauth_twitch, git: "git://github.com/talk2MeGooseman/ueberauth_twitch"}]
     end
     ```
 
@@ -22,7 +22,7 @@
 
     ```elixir
     def application do
-      [applications: [:ueberauth_twitch_strategy]]
+      [applications: [:ueberauth_twitch]]
     end
     ```
 
@@ -115,4 +115,4 @@ the `redirect_uri` on the token request.
 The docs can be found at [ueberauth_twitch][package-docs] on [Hex Docs][hex-docs].
 
 [hex-docs]: https://hexdocs.pm
-[package-docs]: https://hexdocs.pm/ueberauth_twitch_strategy -->
+[package-docs]: https://hexdocs.pm/ueberauth_twitch -->

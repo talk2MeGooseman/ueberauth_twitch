@@ -5,7 +5,7 @@ defmodule UeberauthTwitch.Mixfile do
 
   def project do
     [
-      app: :ueberauth_twitch_strategy,
+      app: :ueberauth_twitch,
       version: @version,
       package: package(),
       elixir: "~> 1.7",
@@ -18,8 +18,8 @@ defmodule UeberauthTwitch.Mixfile do
         "coveralls.post": :test,
         "coveralls.html": :test
       ],
-      source_url: "https://github.com/FILL_THIS_IN",
-      homepage_url: "https://github.com/FILL_THIS_IN",
+      source_url: "https://github.com/talk2MeGooseman/ueberauth_twitch",
+      homepage_url: "https://github.com/talk2MeGooseman/ueberauth_twitch",
       description: description(),
       deps: deps(),
       docs: docs(),
@@ -60,11 +60,11 @@ defmodule UeberauthTwitch.Mixfile do
 
   defp package do
     [
-      name: "ueberauth_twitch_strategy",
+      name: "ueberauth_twitch",
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["Chavez"],
       licenses: ["MIT"],
-      links: %{GitHub: "https://github.com/CHANGE_THIS"}
+      links: %{GitHub: "https://github.com/talk2MeGooseman/ueberauth_twitch"}
     ]
   end
 
