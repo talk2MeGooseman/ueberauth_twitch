@@ -62,7 +62,7 @@ defmodule UeberauthTwitch.Mixfile do
     [
       name: "ueberauth_twitch",
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
-      maintainers: ["Chavez"],
+      maintainers: ["Erik Guzman"],
       licenses: ["MIT"],
       links: %{GitHub: "https://github.com/talk2MeGooseman/ueberauth_twitch"}
     ]

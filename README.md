@@ -14,7 +14,7 @@
 
     ```elixir
     def deps do
-      [{:ueberauth_twitch, git: "git://github.com/talk2MeGooseman/ueberauth_twitch"}]
+      [{:ueberauth_twitch, "~> 0.0.1"}]
     end
     ```
 
