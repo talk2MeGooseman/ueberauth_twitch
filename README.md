@@ -75,7 +75,7 @@
 
 1. You controller needs to implement callbacks to deal with `Ueberauth.Auth` and `Ueberauth.Failure` responses.
 
-    ```
+    ```elixir
       def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
         Logger.debug(_fails)
         conn
