@@ -50,13 +50,6 @@ defmodule Ueberauth.Strategy.Twitch do
 
   You can edit the behaviour of the Strategy by including some options when you register your provider.
 
-  To set the `uid_field`
-
-      config :ueberauth, Ueberauth,
-        providers: [
-          twitch: { Ueberauth.Strategy.Twitch, [uid_field: :email] }
-        ]
-
   Default is `:id`
 
   To set the default 'scopes' (permissions):
@@ -69,7 +62,6 @@ defmodule Ueberauth.Strategy.Twitch do
   Default is "api read_user read_registry"
   """
   use Ueberauth.Strategy,
-    uid_field: :id,
     default_scope: "",
     oauth2_module: Ueberauth.Strategy.Twitch.OAuth
 
@@ -139,12 +131,8 @@ defmodule Ueberauth.Strategy.Twitch do
   Fetches the uid field from the Twitch response. This defaults to the option `uid_field` which in-turn defaults to `id`
   """
   def uid(conn) do
-    user =
-      conn
-      |> option(:uid_field)
-      |> to_string
-
-    conn.private.twitch_user[user]
+    %{"data" => [user]} = conn.private.twitch_user
+    user["id"]
   end
 
   @doc """

@@ -32,9 +32,7 @@
     config :ueberauth, Ueberauth,
       providers: [
         identity: { Ueberauth.Strategy.Identity, [
-            callback_methods: ["POST"],
-            uid_field: :email,
-            nickname_field: :username,
+            callback_methods: ["POST"]
           ] },
         twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]},
       ]
@@ -118,9 +116,7 @@ Or with options:
 config :ueberauth, Ueberauth,
   providers: [
     identity: { Ueberauth.Strategy.Identity, [
-        callback_methods: ["POST"],
-        uid_field: :email,
-        nickname_field: :username,
+        callback_methods: ["POST"]
       ] },
     twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]},
   ]

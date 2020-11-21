@@ -75,7 +75,13 @@ defmodule UeberauthTwitchTest do
     test "uid_field not found" do
       conn =
         %Plug.Conn{}
-        |> Plug.Conn.put_private(:twitch_user, %{uid: "not-found-uid"})
+        |> Plug.Conn.put_private(:twitch_user, %{
+          "data" => [
+            %{
+              "uid" => "not-found"
+            }
+          ]
+        })
 
       assert Ueberauth.Strategy.Twitch.uid(conn) == nil
     end
@@ -85,7 +91,13 @@ defmodule UeberauthTwitchTest do
 
       conn =
         %Plug.Conn{}
-        |> Plug.Conn.put_private(:twitch_user, %{"id" => uid})
+        |> Plug.Conn.put_private(:twitch_user, %{
+          "data" => [
+            %{
+              "id" => uid
+            }
+          ]
+        })
 
       assert Ueberauth.Strategy.Twitch.uid(conn) == uid
     end
