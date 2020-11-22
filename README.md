@@ -14,7 +14,7 @@
 
     ```elixir
     def deps do
-      [{:ueberauth_twitch, "~> 0.0.1"}]
+      [{:ueberauth_twitch, "~> 0.0.2"}]
     end
     ```
 
