@@ -23,13 +23,15 @@ defmodule Ueberauth.Strategy.Twitch do
 
   If you haven't already, create a pipeline and setup routes for your callback handler
 
-      pipeline :auth do
-        Ueberauth.plug "/auth"
-      end
+    pipeline :browser do
+      plug Ueberauth
+      ...
+   end
 
-      scope "/auth" do
-        pipe_through [:browser, :auth]
+      scope "/auth", MyApp do
+        pipe_through :browser
 
+        get "/:provider", AuthController, :request
         get "/:provider/callback", AuthController, :callback
       end
 
@@ -50,16 +52,15 @@ defmodule Ueberauth.Strategy.Twitch do
 
   You can edit the behaviour of the Strategy by including some options when you register your provider.
 
-  Default is `:id`
+  Default is `user:read:email`
 
   To set the default 'scopes' (permissions):
 
       config :ueberauth, Ueberauth,
         providers: [
-          twitch: { Ueberauth.Strategy.Twitch, [default_scope: ""] }
+          twitch: { Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"] }
         ]
 
-  Default is "api read_user read_registry"
   """
   use Ueberauth.Strategy,
     default_scope: "",
