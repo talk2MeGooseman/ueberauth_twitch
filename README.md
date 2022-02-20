@@ -1,6 +1,6 @@
 # Überauth Twitch
 
-<!-- [![Hex Version](https://img.shields.io/hexpm/v/ueberauth_twitch.svg)](https://hex.pm/packages/ueberauth_twitch)
+[![Hex Version](https://img.shields.io/hexpm/v/ueberauth_twitch.svg)](https://hex.pm/packages/ueberauth_twitch)
 
 > Twitch OAuth2 strategy for Überauth.
 
@@ -94,7 +94,7 @@
 
 ## Calling
 
-Once your setup, you can initiate auth using the following ULR, unless you changed the routes from the guide:
+Once your setup, you can initiate auth using the following URL, unless you changed the routes from the guide:
 
     /auth/twitch
 
