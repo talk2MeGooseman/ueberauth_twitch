@@ -23,13 +23,15 @@ defmodule Ueberauth.Strategy.Twitch do
 
   If you haven't already, create a pipeline and setup routes for your callback handler
 
-      pipeline :auth do
-        Ueberauth.plug "/auth"
-      end
+    pipeline :browser do
+      plug Ueberauth
+      ...
+   end
 
-      scope "/auth" do
-        pipe_through [:browser, :auth]
+      scope "/auth", MyApp do
+        pipe_through :browser
 
+        get "/:provider", AuthController, :request
         get "/:provider/callback", AuthController, :callback
       end
 
@@ -50,16 +52,15 @@ defmodule Ueberauth.Strategy.Twitch do
 
   You can edit the behaviour of the Strategy by including some options when you register your provider.
 
-  Default is `:id`
+  Default is `user:read:email`
 
   To set the default 'scopes' (permissions):
 
       config :ueberauth, Ueberauth,
         providers: [
-          twitch: { Ueberauth.Strategy.Twitch, [default_scope: ""] }
+          twitch: { Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"] }
         ]
 
-  Default is "api read_user read_registry"
   """
   use Ueberauth.Strategy,
     default_scope: "",
@@ -80,20 +81,14 @@ defmodule Ueberauth.Strategy.Twitch do
   """
   def handle_request!(conn) do
     scopes = conn.params["scope"] || option(conn, :default_scope)
-    send_redirect_uri = Keyword.get(options(conn) || [], :send_redirect_uri, true)
 
-    opts =
-      if send_redirect_uri do
-        [redirect_uri: callback_url(conn), scope: scopes]
-      else
-        [scope: scopes]
-      end
-
-    opts =
-      if conn.params["state"], do: Keyword.put(opts, :state, conn.params["state"]), else: opts
+    params =
+      [scope: scopes]
+      |> with_optional(:redirect_uri, conn)
+      |> with_state_param(conn)
 
     module = option(conn, :oauth2_module)
-    redirect!(conn, apply(module, :authorize_url!, [opts]))
+    redirect!(conn, apply(module, :authorize_url!, [params]))
   end
 
   @doc """
@@ -203,5 +198,9 @@ defmodule Ueberauth.Strategy.Twitch do
 
   defp option(conn, key) do
     Keyword.get(options(conn) || [], key, Keyword.get(default_options(), key))
+  end
+
+  defp with_optional(opts, key, conn) do
+    if option(conn, key), do: Keyword.put(opts, key, option(conn, key)), else: opts
   end
 end

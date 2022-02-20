@@ -1,7 +1,7 @@
 defmodule UeberauthTwitch.Mixfile do
   use Mix.Project
 
-  @version "0.0.2"
+  @version "0.1.0"
 
   def project do
     [
@@ -38,7 +38,7 @@ defmodule UeberauthTwitch.Mixfile do
   defp deps do
     [
       {:oauth2, "~> 2.0"},
-      {:ueberauth, "~> 0.4"},
+      {:ueberauth, "~> 0.7"},
 
       # dev/test only dependencies
       {:credo, "~> 1.0", only: [:dev, :test]},
