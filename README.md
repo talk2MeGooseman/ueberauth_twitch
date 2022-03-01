@@ -16,19 +16,16 @@
     end
     ```
 
-1. Add Twitch to your Überauth configuration:
+1. Add Twitch to your Überauth configuration to your `config.exs`:
 
     ```elixir
     config :ueberauth, Ueberauth,
-      providers: [
-        identity: { Ueberauth.Strategy.Identity, [
-            callback_methods: ["POST"]
-          ] },
-        twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]},
+        twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]}
       ]
     ```
 
-1.  Update your provider configuration:
+1.  Add your provider configuration to your `config.exs` next, all this information should mirror what you have for your
+    Twitch app:
 
     ```elixir
     config :ueberauth, Ueberauth.Strategy.Twitch.OAuth,
@@ -37,23 +34,23 @@
       redirect_uri: System.get_env("TWITCH_REDIRECT_URI")
     ```
 
-1.  Include the Überauth plug in your controller:
+1.  Include the Überauth plug in your `router.exs` in the browser or custom pipeline:
 
     ```elixir
-    defmodule MyApp.AuthController do
-      use MyApp.Web, :controller
+    defmodule TwitchWeb.Router do
+       use TwitchWeb, :router
 
-      pipeline :browser do
-        plug Ueberauth
-        ...
-       end
+       pipeline :browser do
+         plug Ueberauth
+       ...
+      end
     end
     ```
 
-1.  Create the request and callback routes if you haven't already:
+1.  Define the request and callback routes in your `router.exs`:
 
     ```elixir
-    scope "/auth", MyApp do
+    scope "/auth", TwitchWeb do
       pipe_through :browser
 
       get "/:provider", AuthController, :request
@@ -64,8 +61,8 @@
 1. Create a new controller or use an existing controller that implements callbacks to deal with `Ueberauth.Auth` and `Ueberauth.Failure` responses from Twitch.
 
     ```elixir
-      defmodule MyApp.AuthController do
-        use MyApp.Web, :controller
+      defmodule TwitchWeb.AuthController do
+        use TwitchWeb, :controller
 
         def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
           Logger.debug(_fails)
@@ -75,6 +72,8 @@
         end
 
         def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+          # This is an example of how you can pass the auth information to 
+          # a function that you implement that will register or login a user
           case UserFromAuth.find_or_create(auth) do
             {:ok, user} ->
               conn
