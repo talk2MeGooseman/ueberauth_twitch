@@ -18,11 +18,12 @@
 
 1. Add Twitch to your Überauth configuration to your `config.exs`:
 
-    ```elixir
-    config :ueberauth, Ueberauth,
-        twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]}
-      ]
-    ```
+```elixir
+config :ueberauth, Ueberauth,
+  providers: [
+    twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]}
+  ]
+```
 
 1.  Add your provider configuration to your `config.exs` next, all this information should mirror what you have for your
     Twitch app:
@@ -72,7 +73,7 @@
         end
 
         def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-          # This is an example of how you can pass the auth information to 
+          # This is an example of how you can pass the auth information to
           # a function that you implement that will register or login a user
           case UserFromAuth.find_or_create(auth) do
             {:ok, user} ->
