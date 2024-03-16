@@ -18,12 +18,12 @@
 
 1. Add Twitch to your Überauth configuration to your `config.exs`:
 
-```elixir
-config :ueberauth, Ueberauth,
-  providers: [
-    twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]}
-  ]
-```
+    ```elixir
+    config :ueberauth, Ueberauth,
+      providers: [
+        twitch: {Ueberauth.Strategy.Twitch, [default_scope: "user:read:email"]}
+      ]
+    ```
 
 1.  Add your provider configuration to your `config.exs` next, all this information should mirror what you have for your
     Twitch app:
