@@ -39,7 +39,6 @@ defmodule UeberauthTwitchTest do
 
     assert %{
              "client_id" => "test_client_id",
-             "redirect_uri" => "http://www.example.com/auth/twitch/callback",
              "response_type" => "code",
              "scope" => "read_user"
            } = Plug.Conn.Query.decode(redirect_uri.query)
@@ -143,6 +142,29 @@ defmodule UeberauthTwitchTest do
       assert info.name == "JohnDoe"
       assert info.nickname == "johndoe"
       assert info.email == "johndoe@gmail.com"
+      assert info.description == "My channel."
+      assert info.image == "http://the.image.url"
+    end
+
+    test "is returned with no email" do
+      data = %{
+        "id" => "12345",
+        "display_name" => "JohnDoe",
+        "login" => "johndoe",
+        "description" => "My channel.",
+        "profile_image_url" => "http://the.image.url"
+      }
+
+      conn =
+        %Plug.Conn{}
+        |> Plug.Conn.put_private(:twitch_user, %{
+          "data" => [data]
+        })
+
+      info = Ueberauth.Strategy.Twitch.info(conn)
+      assert info.name == "JohnDoe"
+      assert info.nickname == "johndoe"
+      assert info.email == data["id"] <> "+" <> data["login"] <> "@no-email-provided.twitch.tv"
       assert info.description == "My channel."
       assert info.image == "http://the.image.url"
     end

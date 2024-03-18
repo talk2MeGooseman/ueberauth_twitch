@@ -35,7 +35,7 @@
       redirect_uri: System.get_env("TWITCH_REDIRECT_URI")
     ```
 
-1.  Include the Überauth plug in your `router.exs` in the browser or custom pipeline:
+1.  Include the Üeberauth plug in your `router.exs` in the browser or custom pipeline:
 
     ```elixir
     defmodule TwitchWeb.Router do
@@ -97,6 +97,10 @@
 Once your setup, you can initiate auth using the following URL, unless you changed the routes from the guide:
 
     /auth/twitch
+
+## Missing User Email Address
+
+Twitch allows a user to sign up without providing an email address (they can use a phone verify their account). As a result instead of providing an empty string when an email address is not present you will follow the following format: `id+login@no-email-provided.twitch.tv`
 
 <!-- ## Documentation
 

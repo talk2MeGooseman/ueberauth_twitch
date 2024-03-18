@@ -84,7 +84,6 @@ defmodule Ueberauth.Strategy.Twitch do
 
     params =
       [scope: scopes]
-      |> with_optional(:redirect_uri, conn)
       |> with_state_param(conn)
 
     module = option(conn, :oauth2_module)
@@ -156,10 +155,22 @@ defmodule Ueberauth.Strategy.Twitch do
     %Info{
       name: user["display_name"],
       nickname: user["login"],
-      email: user["email"],
+      email: fetch_email(user),
       description: user["description"],
       image: user["profile_image_url"]
     }
+  end
+
+  def fetch_email(user) do
+    maybe_get_primary_email(user) || maybe_handle_missing_email(user)
+  end
+
+  defp maybe_get_primary_email(user) do
+    Map.get(user, "email")
+  end
+
+  defp maybe_handle_missing_email(user) do
+    "#{user["id"]}+#{user["login"]}@no-email-provided.twitch.tv"
   end
 
   @doc """
@@ -197,7 +208,7 @@ defmodule Ueberauth.Strategy.Twitch do
   end
 
   defp option(conn, key) do
-    Keyword.get(options(conn) || [], key, Keyword.get(default_options(), key))
+    Keyword.get(options(conn), key, Keyword.get(default_options(), key))
   end
 
   defp with_optional(opts, key, conn) do
