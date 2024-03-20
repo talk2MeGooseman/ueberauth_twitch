@@ -1,7 +1,8 @@
 defmodule UeberauthTwitch.Mixfile do
   use Mix.Project
 
-  @version "0.1.0"
+  @source_url "https://github.com/talk2MeGooseman/ueberauth_github"
+  @version "0.2.0"
 
   def project do
     [
@@ -18,8 +19,8 @@ defmodule UeberauthTwitch.Mixfile do
         "coveralls.post": :test,
         "coveralls.html": :test
       ],
-      source_url: "https://github.com/talk2MeGooseman/ueberauth_twitch",
-      homepage_url: "https://github.com/talk2MeGooseman/ueberauth_twitch",
+      source_url: @source_url,
+      homepage_url: @source_url,
       description: description(),
       deps: deps(),
       docs: docs(),
@@ -51,7 +52,15 @@ defmodule UeberauthTwitch.Mixfile do
   end
 
   defp docs do
-    [extras: ["README.md"]]
+    [
+      extras: [
+        "README.md": [title: "Overview"],
+        "CHANGELOG.md": [title: "Changelog"]
+      ],
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "#v{@version}"
+    ]
   end
 
   defp description do
@@ -64,7 +73,9 @@ defmodule UeberauthTwitch.Mixfile do
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["Erik Guzman"],
       licenses: ["MIT"],
-      links: %{GitHub: "https://github.com/talk2MeGooseman/ueberauth_twitch"}
+      links: %{
+        GitHub: "https://github.com/talk2MeGooseman/ueberauth_twitch"
+      }
     ]
   end
 

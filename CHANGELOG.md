@@ -1,20 +1,14 @@
-# v0.3.0 - 2020-08-29
+# Change Log
 
+## v0.2.0 - 2024-03-19
+
+### Features:
+- Authenticated users without an e-mail address get a generated private email instead of being set to null
+
+
+### Chores:
 - Upgrade dependencies
-- Upgrade oauth2 to 2.x, and change usage. Thanks [@tcitworld](https://github.com/tcitworld)
-
-## Potential Breaking Changes
-
-- Updated minimum elixir version from `~> 1.3` to `~> 1.7`
-
-# v0.2.0 - 2018-03-14
-
-- Set app correctly to `ueberauth_twitch`
-
-# v0.1.1 - 2018-03-13
-
-- Dependency updates
-
-# v0.1.0 - 2017-11-06
-
-- Initial release
+- Upgrade ueberauth from 0.7.0 to 0.10.8
+- Upgrade oauth2 from 2.0.0 to 2.1.0
+- Add GitHub Action to run tests
+- Fix broken tests
